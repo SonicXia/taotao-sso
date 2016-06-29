@@ -1,5 +1,8 @@
 package com.taotao.sso.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.json.MappingJacksonValue;
@@ -96,9 +99,10 @@ public class UserController {
 	 */
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	@ResponseBody
-	public TaotaoResult userLogin(String username, String password){
+	public TaotaoResult userLogin(String username, String password, 
+			HttpServletRequest request, HttpServletResponse response){
 		try {
-			TaotaoResult result = userService.userLogin(username, password);
+			TaotaoResult result = userService.userLogin(username, password, request, response);
 			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
